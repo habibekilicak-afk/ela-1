@@ -53,8 +53,7 @@ android {
     packaging {
         jniLibs {
             // Vosk native kütüphaneleri için çakışmaları önle
-            pickFirsts += ["**/libkaldi-android.so"]
-        }
+pickFirsts += listOf("**/libkaldi-android.so")        }
     }
 }
 
