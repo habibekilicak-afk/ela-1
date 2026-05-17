@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Mikrofon: sürekli dinleme için zorunlu -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Foreground Service: arka planda çalışmak için -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <!-- Telefon arama (3. adımda kullanılacak) -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- Rehber okuma (3. adımda kullanılacak) -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- Ses servisi wake lock için -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    
+    <!-- F-07: Konum tabanlı acil SOS ve SMS izinleri -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <application
+        android:name=".AseaApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Asea"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Asea">
+
+        <!-- Wake-Word Dinleme Foreground Service -->
+        <service
+            android:name=".service.WakeWordService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
+
+        <!-- MainActivity: Uygulamanın giriş ekranı -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Asea">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+</manifest>
